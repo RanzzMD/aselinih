@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Forum Pengajuan Izin Digital</title>
+
+    <!-- SDK (biarkan sesuai environment Anda) -->
+    <script src="/_sdk/data_sdk.js" defer></script>
+    <script src="/_sdk/element_sdk.js" defer></script>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./styles.css" />
+
+    <style>@view-transition { navigation: auto; }</style>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="app" class="min-h-full gradient-bg p-6">
+      <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8 fade-in">
+          <div class="inline-block mb-4 relative">
+  <div class="portal-shadow" aria-hidden="true"></div>
+  <div class="portal-smoke portal-smoke-a" aria-hidden="true"></div>
+  <div class="portal-smoke portal-smoke-b" aria-hidden="true"></div>
+  <div class="portal-particles" aria-hidden="true"></div>
+  <div class="portal-center text-6xl icon-bounce relative z-10">📋</div>
+</div>
+          <h1 id="form-title" class="text-4xl font-bold mb-2 text-white drop-shadow-lg">
+            Forum Pengajuan Izin Digital
+          </h1>
+          <p id="form-subtitle" class="text-xl text-white opacity-90">
+            Lengkapi formulir di bawah ini untuk mengajukan izin
+          </p>
+        </div>
+
+        <!-- Form Container -->
+        <div class="glass-card rounded-2xl shadow-2xl p-8 mb-8 fade-in">
+          <form id="submission-form">
+            <!-- Data Diri Section -->
+            <div class="mb-8">
+              <h2 class="section-header text-2xl font-semibold mb-6">👤 Data Diri</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="nama_lengkap" class="block text-sm font-semibold mb-2">Nama Lengkap *</label>
+                  <input type="text" id="nama_lengkap" name="nama_lengkap" required
+                         class="input-field w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400">
+                </div>
+
+                <div>
+                  <label for="nik" class="block text-sm font-semibold mb-2">NIK (Nomor Induk Kependudukan) *</label>
+                  <input type="text" id="nik" name="nik" required pattern="[0-9]{16}" maxlength="16"
+                         class="input-field w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                         placeholder="16 digit">
+                </div>
+
+                <div>
+                  <label for="tempat_lahir" class="block text-sm font-semibold mb-2">Tempat Lahir *</label>
+                  <input type="text" id="tempat_lahir" name="tempat_lahir" required
+                         class="input-field w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400">
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold mb-2">Tanggal Lahir *</label>
+                  <div class="grid grid-cols-3 gap-2">
+                    <select id="tanggal" name="tanggal" required
+                            class="input-field px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400">
+                      <option value="">Tanggal</option>
+                    </select>
+
+                    <select id="bulan" name="bulan" required
+                            class="input-field px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400">
+                      <option value="">Bulan</option>
+                      <option value="01">Januari</option>
+                      <option value="02">Februari</option>
+                      <option value="03">Maret</option>
+                      <option value="04">April</option>
+                      <option value="05">Mei</option>
+                      <option value="06">Juni</option>
+                      <option value="07">Juli</option>
+                      <option value="08">Agustus</option>
+                      <option value="09">September</option>
+                      <option value="10">Oktober</option>
+                      <option value="11">November</option>
+                      <option value="12">Desember</option>
+                    </select>
+
+                    <select id="tahun" name="tahun" required
+                            class="input-field px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400">
+                      <option value="">Tahun</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="md:col-span-2">
+                  <label for="alamat" class="block text-sm font-semibold mb-2">Alamat Lengkap *</label>
+                  <textarea id="alamat" name="alamat" required rows="3"
+                            class="input-field w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400"></textarea>
+                </div>
+
+                <div>
+                  <label for="no_telepon" class="block text-sm font-semibold mb-2">Nomor Telepon *</label>
+                  <input type="tel" id="no_telepon" name="no_telepon" required
+                         class="input-field w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                         placeholder="08xxxxxxxxxx">
+                </div>
+
+                <div>
+                  <label for="email" class="block text-sm font-semibold mb-2">Email *</label>
+                  <input type="email" id="email" name="email" required
+                         class="input-field w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400">
+                </div>
+              </div>
+            </div>
+
+            <!-- Lampiran Section -->
+            <div class="mb-8">
+              <h2 class="section-header text-2xl font-semibold mb-6">📎 Lampiran Dokumen</h2>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-semibold mb-3">Foto KTP *</label>
+
+                  <div class="file-upload-box border-2 border-dashed rounded-xl p-8 text-center">
+                    <input type="file" id="foto_ktp" name="foto_ktp" accept="image/*" required class="hidden">
+                    <label for="foto_ktp" class="cursor-pointer block file-upload-label">
+                      <div id="ktp-icon" class="text-5xl mb-3">📄</div>
+                      <div class="text-sm font-semibold mb-1">Klik untuk upload Foto KTP</div>
+                      <div class="text-xs opacity-70">Format: JPG, PNG (Max 5MB)</div>
+                    </label>
+
+                    <div id="ktp-preview" class="mt-4 hidden">
+                      <img id="ktp-image" class="max-w-full h-auto rounded-lg shadow-md mx-auto" style="max-height: 200px;">
+                      <p class="text-sm font-semibold text-green-600 mt-2"></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold mb-3">Surat Keterangan Belum Nikah *</label>
+
+                  <div class="file-upload-box border-2 border-dashed rounded-xl p-8 text-center">
+                    <input type="file" id="surat_keterangan" name="surat_keterangan" accept="image/*,application/pdf" required class="hidden">
+                    <label for="surat_keterangan" class="cursor-pointer block file-upload-label">
+                      <div id="surat-icon" class="text-5xl mb-3">📋</div>
+                      <div class="text-sm font-semibold mb-1">Klik untuk upload Surat</div>
+                      <div class="text-xs opacity-70">Format: JPG, PNG, PDF (Max 5MB)</div>
+                    </label>
+
+                    <div id="surat-preview" class="mt-4 hidden">
+                      <img id="surat-image" class="max-w-full h-auto rounded-lg shadow-md mx-auto" style="max-height: 200px;">
+                      <p class="text-sm font-semibold text-green-600 mt-2"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alasan Section -->
+            <div class="mb-8">
+              <h2 class="section-header text-2xl font-semibold mb-6">✍️ Alasan Pengajuan</h2>
+              <div>
+                <label for="alasan" class="block text-sm font-semibold mb-3">Jelaskan alasan pengajuan izin Anda *</label>
+                <textarea id="alasan" name="alasan" required rows="6"
+                          class="input-field w-full px-4 py-3 rounded-xl border-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                          placeholder="Tuliskan alasan pengajuan izin secara lengkap dan jelas..."></textarea>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit" id="submit-btn" aria-label="Kirim Pengajuan"
+                      class="submit-button px-10 py-4 rounded-xl font-bold text-lg shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-white relative z-10">
+                <span id="submit-text" class="relative z-10">Kirim Pengajuan 🚀</span>
+                <div id="submit-spinner" class="loading-spinner mx-auto hidden"></div>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Submissions List -->
+<!-- Folders List -->
+<div class="glass-card rounded-2xl shadow-2xl p-8 fade-in mb-8">
+  <h2 class="section-header text-2xl font-semibold mb-6">📁 Folder Pengajuan</h2>
+  <div id="folders-list" class="space-y-2">
+    <div class="text-gray-500 text-sm">Belum ada pengajuan</div>
+  </div>
+
+        <div id="submissions-card" class="hidden glass-card rounded-2xl shadow-2xl p-8 fade-in">
+          <h2 class="section-header text-2xl font-semibold mb-6">📊 Daftar Pengajuan</h2>
+          <div id="submissions-list" class="space-y-4">
+            <p class="text-center py-8 text-gray-500">Pilih folder di atas untuk melihat daftar pengajuan</p>
+          </div>
+        </div>
+      </div>
+    </div></div>
+    <!-- Viewer Modal -->
+<div id="viewer-backdrop" class="fixed inset-0 bg-black/60 hidden z-[2000]"></div>
+<div id="viewer-modal" class="fixed inset-0 hidden z-[2001] p-4">
+  <div class="relative max-w-5xl w-full h-[90vh] mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+    <div class="flex items-center justify-between p-4 border-b">
+      <div class="font-semibold" id="viewer-title">Pratinjau Dokumen</div>
+      <button id="viewer-close" class="px-3 py-1.5 rounded-lg bg-gray-900 text-white">Tutup ✕</button>
+    </div>
+    <div id="viewer-body" class="flex-1 bg-gray-50">
+      <!-- Konten diisi dinamis (img/iframe) -->
+    </div>
+  </div>
+</div>
+    <!-- App Script -->
+    <script src="./app.js" defer></script>
+  </body>
+                                                                                       </html>

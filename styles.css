@@ -1,0 +1,323 @@
+/* ============================================
+   SOLO LEVELING — Arcane Shadow (Blue + Purple)
+   ============================================ */
+:root{
+  --bg-dark:#0b0f1f;          
+  --bg-darker:#060714;
+  --card:#13172fdd;           
+  --stroke:#7c3aed55;         
+  --primary-1:#3b82f6;        
+  --primary-2:#8b5cf6;        
+  --text:#eef1ff;
+  --muted:#c7c9e4;
+  --input-bg:#141836cc;
+  --focus:#8b5cf6;
+}
+
+html, body { height:100%; }
+body{
+  margin:0; padding:0; box-sizing:border-box;
+  background: radial-gradient(circle at 20% -10%, #0e1030, #0b0c20 65%, #08081a 90%);
+  color:var(--text);
+  font-family:'Poppins', system-ui;
+  font-size:17px;
+  line-height:1.55;
+}
+
+/* Cards */
+.glass-card{
+  background:var(--card);
+  backdrop-filter:blur(14px);
+  border:1px solid var(--stroke);
+  box-shadow:0 6px 28px rgba(20,0,45,.45);
+  border-radius:16px;
+}
+
+/* Inputs */
+.input-field{
+  background:var(--input-bg);
+  border:2px solid rgba(148,163,184,.35);
+  color:var(--text);
+  border-radius:12px;
+  transition:.25s;
+}
+.input-field:focus{
+  border-color:var(--primary-2);
+  box-shadow:0 0 0 4px rgba(139,92,246,.25);
+}
+
+/* File box */
+.file-upload-box{
+  border:2px dashed rgba(148,163,184,.45);
+  background:rgba(14,12,35,.55);
+  transition:.3s;
+}
+.file-upload-box:hover{
+  border-color:var(--primary-2);
+  box-shadow:0 0 26px rgba(139,92,246,.35);
+}
+
+/* Buttons */
+.submit-button{
+  background:linear-gradient(135deg, var(--primary-1), var(--primary-2));
+  color:#ffffff;
+  font-weight:800;
+  box-shadow:0 10px 28px rgba(0,0,0,.45);
+  transition:.25s;
+}
+.submit-button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(0,0,0,.55);
+}
+
+/* Section lines */
+.section-header::after{
+  background: linear-gradient(90deg, var(--primary-1), var(--primary-2));
+}
+
+/* Submission card */
+.submission-card{
+  background:rgba(18,16,45,.9);
+  border-left:4px solid var(--primary-2);
+  color:var(--text);
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+  transition:.25s;
+}
+.submission-card:hover{
+  transform:translateX(6px);
+}
+
+/* Toast */
+.toast{
+  background:rgba(12,10,35,.9);
+  color:var(--text);
+  border:1px solid rgba(148,163,184,.35);
+  box-shadow:0 0 26px rgba(0,0,0,.5);
+}
+
+/* === Solo Leveling Shadow Portal Aura === */
+.portal-center{
+  text-shadow: 0 0 12px rgba(59,130,246,.8), 0 0 24px rgba(139,92,246,.6);
+}
+
+/* Rotating arc ring + soft core glow */
+.portal-shadow{
+  position:absolute;
+  inset:-28px;
+  pointer-events:none;
+}
+.portal-shadow::before,
+.portal-shadow::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+}
+/* Rotating arc (conic) */
+.portal-shadow::before{
+  background:
+    conic-gradient(from 0deg,
+      transparent 0deg, rgba(59,130,246,.0) 40deg,
+      rgba(139,92,246,.65) 90deg, rgba(59,130,246,.85) 140deg,
+      rgba(139,92,246,.65) 190deg, rgba(59,130,246,.0) 240deg,
+      transparent 360deg);
+  -webkit-mask: radial-gradient(circle at center, transparent 40%, black 41%);
+          mask: radial-gradient(circle at center, transparent 40%, black 41%);
+  filter: blur(1px);
+  animation: portal-rotate 12s linear infinite;
+}
+/* Core pulse */
+.portal-shadow::after{
+  background: radial-gradient(60% 60% at 50% 50%,
+    rgba(56,189,248,.18) 0%,
+    rgba(139,92,246,.16) 35%,
+    rgba(2,6,23,0) 70%);
+  animation: portal-pulse 2.6s ease-in-out infinite;
+}
+
+/* Smoky tendrils (two blurred blobs floating in opposite phase) */
+.portal-smoke{
+  position:absolute;
+  inset:-18px;
+  border-radius:50%;
+  filter: blur(24px);
+  pointer-events:none;
+  background:
+    radial-gradient(40% 40% at 30% 30%, rgba(139,92,246,.28), transparent 70%),
+    radial-gradient(35% 35% at 70% 70%, rgba(59,130,246,.24), transparent 72%);
+  opacity:.55;
+}
+.portal-smoke-a{ animation: portal-drift-a 7s ease-in-out infinite; }
+.portal-smoke-b{ animation: portal-drift-b 8.5s ease-in-out infinite; opacity:.4; }
+
+/* Floating spark particles */
+.portal-particles{
+  position:absolute;
+  inset:-24px;
+  border-radius:50%;
+  pointer-events:none;
+  background:
+    radial-gradient(2px 2px at 12% 22%, rgba(191,219,254,.95), transparent 55%),
+    radial-gradient(2px 2px at 78% 30%, rgba(216,180,254,.95), transparent 55%),
+    radial-gradient(2px 2px at 30% 70%, rgba(191,219,254,.95), transparent 55%),
+    radial-gradient(2px 2px at 62% 82%, rgba(216,180,254,.95), transparent 55%),
+    radial-gradient(2px 2px at 50% 48%, rgba(191,219,254,.95), transparent 55%);
+  animation: portal-spark 3.2s ease-in-out infinite;
+  opacity:.7;
+}
+
+/* Keyframes */
+@keyframes portal-rotate{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+@keyframes portal-pulse{
+  0%,100%{ transform: scale(1); opacity:.75; }
+  50%{ transform: scale(1.06); opacity:1; }
+}
+@keyframes portal-drift-a{
+  0%{ transform: translate(-4px, 2px) scale(1); }
+  50%{ transform: translate(6px, -3px) scale(1.06); }
+  100%{ transform: translate(-4px, 2px) scale(1); }
+}
+@keyframes portal-drift-b{
+  0%{ transform: translate(5px, -4px) scale(1.02); }
+  50%{ transform: translate(-6px, 5px) scale(0.98); }
+  100%{ transform: translate(5px, -4px) scale(1.02); }
+}
+@keyframes portal-spark{
+  0%,100%{ filter: drop-shadow(0 0 2px rgba(191,219,254,.9)); transform: translateY(0); }
+  50%{ filter: drop-shadow(0 0 6px rgba(167,139,250,.95)); transform: translateY(-2px); }
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce){
+  .portal-shadow::before,
+  .portal-shadow::after,
+  .portal-smoke-a,
+  .portal-smoke-b,
+  .portal-particles{ animation: none !important; }
+}
+
+/* === Enhanced Solo Leveling Button: Glow + Ripple === */
+.submit-button{
+  position: relative;
+  isolation: isolate; /* keep ripples clipped */
+  border: none;
+  border-radius: 14px;
+}
+/* Neon aura ring */
+.submit-button::after{
+  content: "";
+  position: absolute;
+  inset: -3px;
+  z-index: 0;
+  border-radius: 16px;
+  background: conic-gradient(from 0deg, var(--primary-1), var(--primary-2), var(--primary-1));
+  filter: blur(10px) saturate(120%);
+  opacity: .55;
+  animation: btn-ring-spin 10s linear infinite;
+}
+/* Darken behind text to ensure readability */
+.submit-button > #submit-text{
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 0 rgba(0,0,0,.25);
+}
+/* Ripple circles */
+.btn-ripple{
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  width: 12px; height: 12px;
+  background: radial-gradient(circle, rgba(255,255,255,.55) 0%, rgba(255,255,255,.25) 40%, transparent 70%);
+  animation: btn-ripple-anim 650ms ease-out forwards;
+}
+/* Focus-visible for keyboard users */
+.submit-button:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(139,92,246,.35), 0 0 0 8px rgba(59,130,246,.25);
+}
+/* Disabled state clarity */
+.submit-button:disabled{
+  filter: grayscale(.25) brightness(.9);
+  cursor: not-allowed;
+}
+/* Spinner sits above glow */
+#submit-spinner{ position: absolute; inset: 0 auto auto 0; left: 12px; top: 50%; transform: translateY(-50%); z-index: 2; }
+
+@keyframes btn-ring-spin{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+@keyframes btn-ripple-anim{
+  0%{ opacity: .75; transform: translate(-50%, -50%) scale(1); }
+  80%{ opacity: .2; transform: translate(-50%, -50%) scale(18); }
+  100%{ opacity: 0; transform: translate(-50%, -50%) scale(22); }
+}
+
+
+/* === Reinforced Blue–Purple Theme for Daftar Pengajuan === */
+
+/* Submission list card styling */
+.submission-card{
+  background: rgba(18,16,45,0.92) !important;
+  border-left: 4px solid var(--primary-2) !important;
+  color: var(--text) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.55) !important;
+  backdrop-filter: blur(10px);
+}
+
+/* Folder tiles (group buttons) */
+#folders-list button{
+  background: rgba(18,16,45,0.8) !important;
+  color: var(--text) !important;
+  border: 1px solid rgba(139,92,246,0.4) !important;
+  transition: .25s ease;
+}
+#folders-list button:hover{
+  background: rgba(139,92,246,0.25) !important;
+  box-shadow: 0 0 18px rgba(139,92,246,0.35);
+}
+
+/* Active folder tile state */
+#folders-list button.bg-indigo-600{
+  background: linear-gradient(135deg, var(--primary-1), var(--primary-2)) !important;
+  color:#fff !important;
+  border:none !important;
+  box-shadow:0 0 16px rgba(139,92,246,0.55);
+}
+
+/* === Themed visibility fixes for submissions list (Blue+Purple) === */
+/* Grid with Tempat/Tanggal Lahir & Kontak */
+.submission-card .grid{
+  background: rgba(22, 18, 48, 0.6) !important;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  color: var(--text);
+}
+.submission-card .grid span.font-semibold{ color: #e7e9ff; }
+/* Alamat box */
+.submission-card .mb-4.bg-blue-50,
+.submission-card .mb-4.bg-gray-50{
+  background: rgba(20, 16, 44, 0.65) !important;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: var(--text);
+}
+/* Alasan box */
+.submission-card .mb-4.bg-purple-50{
+  background: rgba(27, 18, 58, 0.65) !important;
+  border: 1px solid rgba(139, 92, 246, 0.28);
+  color: var(--text);
+}
+/* Ensure small text is readable */
+.submission-card p,
+.submission-card .text-sm,
+.submission-card .whitespace-pre-wrap{
+  color: var(--text) !important;
+}
+/* Pill status remains readable */
+.submission-card span.px-4.py-2.rounded-full{
+  filter: saturate(110%);
+}
